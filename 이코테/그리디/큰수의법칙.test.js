@@ -14,30 +14,55 @@ const solution = ([N, M, K], numbers) => {
   const second = Math.max(...copy_without_first);
 
   // 재귀로 풀어보자
-  //   while (M > 0) {
-  //     result = result + first * (M > K ? K : M);
-  //     M = M > K ? M - K : 0;
-
-  //     if (M > 0) {
-  //       result = result + second;
-  //       M = M - 1;
-  //     }
-  //   }
-
-  const getResult = (result) => {
-    if (M < 1) {
-      return result;
-    }
-
+  while (M > 0) {
     result = result + first * (M > K ? K : M);
     M = M > K ? M - K : 0;
 
-    result = result + second;
-    M = M - 1;
-  };
+    if (M > 0) {
+      result = result + second;
+      M = M - 1;
+    }
+  }
 
-  getResult(result);
   return result;
+};
+
+const calculateGreaterValue = (numbers) => {
+  return numbers.reduce(
+    ([first, second], cur) => {
+      if (first < cur) {
+        return [cur, first];
+      }
+
+      if (second < cur) {
+        return [first, cur];
+      }
+
+      return [first, second];
+    },
+    [0, 0],
+  );
+};
+
+const run = (m, k, first, second, sum = 0) => {
+  if (m <= 0) {
+    return sum;
+  }
+
+  if (m >= k + 1) {
+    return run(m - k - 1, k, first, second, sum + first * k + second);
+  }
+
+  if (m === k) {
+    return run(m - k, k, first, second, sum + first * k);
+  }
+
+  return run(0, k, first, second, sum + first * m);
+};
+
+const solution2 = ([n, m, k], numbers) => {
+  const [first, second] = calculateGreaterValue(numbers);
+  return run(m, k, first, second);
 };
 
 describe('큰 수의 법칙에 따른 결과를 출력하라.', () => {
@@ -45,4 +70,13 @@ describe('큰 수의 법칙에 따른 결과를 출력하라.', () => {
     expect(solution([5, 8, 3], [2, 4, 5, 4, 6])).toBe(46);
     expect(solution([5, 6, 3], [2, 4, 5, 4, 6])).toBe(6 + 6 + 6 + 5 + 6 + 6);
   });
+});
+
+test('calculateGreaterValue', () => {
+  expect(calculateGreaterValue([2, 4, 5, 4, 6])).toEqual([6, 5]);
+});
+
+test('soluton2', () => {
+  expect(solution2([5, 8, 3], [2, 4, 5, 4, 6])).toBe(46);
+  expect(solution2([5, 6, 3], [2, 4, 5, 4, 6])).toBe(6 + 6 + 6 + 5 + 6 + 6);
 });
