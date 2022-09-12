@@ -7,8 +7,10 @@ const moveCoordinates = {
 
 const move = (moveType, position, n) => {
   const [dx, dy] = moveCoordinates[moveType](position);
-  // 하나라도 되면 이전꺼 보내야함 some
-  if (dx > n || dy > n || dx < 1 || dy < 1) {
+
+  const isValid = (element) => element >= 1 && element <= n;
+
+  if (![dx, dy].every(isValid)) {
     return position;
   }
 
@@ -20,18 +22,15 @@ let count = 0;
 // while 문으로 바꾸기
 const run = (n, moves, position) => {
   while (true) {
-    moves.slice(1);
-
     if (moves.length === 0) {
       return `${position[0]} ${position[1]}`;
     }
 
     position = move(moves[0], position, n);
-    return `${position[0]} ${position[1]}`;
+    moves = moves.slice(1);
   }
 };
 
-// 'R R R U D D'
 const solution = (n, moveTypes) => {
   const moves = moveTypes.split(' ');
   return run(n, moves, [1, 1]);
