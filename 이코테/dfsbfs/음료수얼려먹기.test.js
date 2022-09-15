@@ -41,10 +41,10 @@ const solution = (n, m, ices) => {
     return false;
   };
 
-  for (let i = 0; i < n; i++) {
-    for (let j = 0; j < m; j++) {
+  for (let i = 0; i < n; i += 1) {
+    for (let j = 0; j < m; j += 1) {
       if (dfs(i, j, ices)) {
-        count = count + 1;
+        count += 1;
       }
     }
   }
