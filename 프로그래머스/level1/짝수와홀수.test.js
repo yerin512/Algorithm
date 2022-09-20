@@ -6,9 +6,17 @@
 */
 
 const solution = (num) => {
-  return num % 2 === 0 ? 'even' : 'odd';
+  return num % 2 === 0 ? 'EveOn' : 'Odd';
+};
+
+const solution2 = (num) => {
+  return num % 2 ? 'Odd' : 'Even';
 };
 
 test('정수 num이 짝수일 경우 "Even"을 반환하고 홀수인 경우 "Odd"를 반환하라', () => {
-  expect(solution(3)).toBe('odd');
+  expect(solution(3)).toBe('Odd');
+});
+
+test('정수 num이 짝수일 경우 "Even"을 반환하고 홀수인 경우 "Odd"를 반환하라', () => {
+  expect(solution2(2)).toBe('Even');
 });
