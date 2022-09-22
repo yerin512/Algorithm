@@ -6,6 +6,7 @@
 
 반성 : 
 for문으로 찾을 생각을 못했는데 for문으로 찾는 방법도 있었구나!
+findIndex 으로 찾을수 있는 방법도 있는지 처음 알았다.
 */
 
 const solution = (seoul) => {
