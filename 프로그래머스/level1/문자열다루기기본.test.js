@@ -5,7 +5,8 @@
 계획 : if문으로 length가 4, 6이면 if문으로 숫자만 있는지 정규식으로 판단함 
 
 반성 :
-
+처음 풀이를 s.length === 6 대신 6만 넣어서 오래걸렸었다.
+true false로 나타내기에는 정규식 test가 더 좋은 걸 한 번 더 깨달았다.
 */
 
 function solution(s) {

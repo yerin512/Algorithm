@@ -4,7 +4,7 @@
 조건 : 
 a와 b의 내적은 a[0]*b[0] + a[1]*b[1] + ... + a[n-1]*b[n-1]
 n은 a, b의 길이
-계획 :
+계획 : 반복문
 
 반성 : reduce는 왜 해도해도 바로 떠오르지않는 건지!!
 
@@ -22,7 +22,6 @@ const solution = (a, b) => {
 };
 
 // reduce
-
 const solution2 = (a, b) => {
   return a.reduce((acc, cur, i) => acc + cur * b[i], 0);
 };
