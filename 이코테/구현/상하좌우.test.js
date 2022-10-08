@@ -17,10 +17,11 @@ const move = (moveType, position, n) => {
   return [dx, dy];
 };
 
-let count = 0;
-
 // while 문으로 바꾸기
-const run = (n, moves, position) => {
+const run = (n, m, pos) => {
+  let position = pos;
+  let moves = m;
+
   while (true) {
     if (moves.length === 0) {
       return `${position[0]} ${position[1]}`;
@@ -39,6 +40,5 @@ const solution = (n, moveTypes) => {
 describe('최종 도착지의 좌표를 구하라', () => {
   it('공간의 크기와 이동경로가 주어질 경우 도착지 좌표 값을 리턴함', () => {
     expect(solution(5, 'R R R U D D')).toBe('3 4');
-    // expect(solution(5, 'U R D')).toBe('2 2');
   });
 });
