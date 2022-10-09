@@ -22,14 +22,21 @@
 */
 
 const solution = (s) => {
-  s.sort();
-    console.log(s);
-    
-    for (let i = 0; i < s.length; )
+  const numbers = s.split(' ').map((x) => Number(x));
+  numbers.sort((a, b) => a - b);
+
+  let target = 1;
+  for (let i = 0; i < numbers.length; i += 1) {
+    if (target < numbers[i]) {
+      break;
+    }
+    target += numbers[i];
+  }
+  return target;
 };
 
 describe('주어진 동전들로 만들 수 없는 양의 정수 금액 중 최솟값을 구하라', () => {
   it('동전이 주어질 경우 만들 수 없는 양의 정수 금액 중 최솟값을 구함', () => {
-    expect(solution([3, 2, 1, 1, 9])).toBe(8);
+    expect(solution('3 2 1 1 9')).toBe(8);
   });
 });
